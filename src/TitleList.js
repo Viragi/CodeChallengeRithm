@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Title from './Title';
-import data from './sample.json';
+import getMovieList from './formatData';
 
 class TitleList extends Component {
   constructor(props) {
@@ -11,28 +11,10 @@ class TitleList extends Component {
   }
 
   componentDidMount() {
-    this.getMovieList();
+    let movies = getMovieList(this.props.category);
+    this.setState({ titles: movies });
     console.log(this.state.titles);
   }
-
-  getMovieList = () => {
-    const movies = [];
-    let i = 0;
-    while (movies.length <= 21) {
-      console.log(data.entries[i]);
-      if (
-        data.entries[i].programType === this.props.category &&
-        data.entries[i].releaseYear >= 2010
-      ) {
-        movies.push({
-          name: data.entries[i].title,
-          image: data.entries[i].images.poster_art.url
-        });
-      }
-      i++;
-    }
-    this.setState({ titles: movies });
-  };
 
   render() {
     const result = this.state.titles.map(a => {

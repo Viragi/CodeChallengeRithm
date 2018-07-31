@@ -27,7 +27,7 @@ class App extends Component {
             path="/series"
             component={() => <TitleList category="series" />}
           />
-          <Route path="/" component={<Content />} />
+          <Route path="/" component={Content} />
         </Switch>
       </div>
     );
