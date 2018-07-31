@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Title from './Title';
 import getMovieList from './formatData';
+import Header from './Header';
 
 class TitleList extends Component {
   constructor(props) {
@@ -40,7 +41,14 @@ class TitleList extends Component {
     });
     console.log('result', result);
     if (this.state.isLoading === false) {
-      return <div> {result}</div>;
+      return (
+        <div>
+          <div>
+            <Header category={this.props.category} />
+          </div>
+          {result}
+        </div>
+      );
     } else {
       return <h3>LOADING...</h3>;
     }
