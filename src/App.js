@@ -4,6 +4,7 @@ import './App.css';
 import Content from './Content';
 import { Route, Switch } from 'react-router-dom';
 import TitleList from './TitleList';
+import Footer from './Footer';
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +17,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        
         <Switch>
           <Route exact path="/" component={Content} />
           <Route
@@ -29,6 +29,9 @@ class App extends Component {
           />
           <Route path="/" component={Content} />
         </Switch>
+        <div>
+          <Footer />
+        </div>
       </div>
     );
   }
