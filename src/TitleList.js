@@ -6,16 +6,30 @@ class TitleList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      titles: []
+      titles: [],
+      isLoading: true
     };
   }
 
   componentDidMount() {
-    let movies = getMovieList(this.props.category);
-    this.setState({ titles: movies });
-    console.log(this.state.titles);
+    try {
+      this.timerID = setInterval(() => {
+        let movies = getMovieList(this.props.category);
+        this.setState({
+          titles: movies,
+          isLoading: false
+        });
+      }, 2000);
+
+      console.log(this.state.titles);
+    } catch (e) {
+      return <h3>Opps, Something went Wrong</h3>;
+    }
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
   render() {
     const result = this.state.titles.map(a => {
       return (
@@ -25,8 +39,11 @@ class TitleList extends Component {
       );
     });
     console.log('result', result);
-
-    return <div> {result}</div>;
+    if (this.state.isLoading === false) {
+      return <div> {result}</div>;
+    } else {
+      return <h3>LOADING...</h3>;
+    }
   }
 }
 
