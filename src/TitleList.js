@@ -21,7 +21,7 @@ class TitleList extends Component {
     while (movies.length <= 21) {
       console.log(data.entries[i]);
       if (
-        data.entries[i].programType === 'movie' &&
+        data.entries[i].programType === this.props.category &&
         data.entries[i].releaseYear >= 2010
       ) {
         movies.push({
